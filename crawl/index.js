@@ -53,6 +53,7 @@ exports.scraperData = async (req, res) => {
     res.status(500).send({
       status: 500,
       message: "Failed",
+      error: error.response && error.response.data.message ? error.response.data.message : error.message
     });
   }
 };
@@ -78,7 +79,6 @@ exports.scraperDataAll = async (req, res) => {
     dataScrape.push({judul: judul._remoteObject.value , gambar:gambar._remoteObject.value,sumber: sumber._remoteObject.value,waktu: waktu._remoteObject.value })
     }
 
-    console.log(dataScrape.length)
     res.status(200).send({
       status: 200,
       message: "Success",
@@ -86,10 +86,10 @@ exports.scraperDataAll = async (req, res) => {
     });
     await browser.close();
   } catch (error) {
-      console.log(error)
     res.status(500).send({
       status: 500,
       message: "Failed",
+      error: error.response && error.response.data.message ? error.response.data.message : error.message
     });
   }
 };
