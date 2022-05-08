@@ -2,7 +2,9 @@ const puppeteer = require("puppeteer");
 
 exports.scraperData = async (req, res) => {
   try {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions']})
+
+    // const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto("https://www.goal.com/id/berita/1");
     const [el] = await page.$x(
@@ -60,7 +62,8 @@ exports.scraperData = async (req, res) => {
 
 exports.scraperDataAll = async (req, res) => {
   try {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions']})
+    // const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto("https://www.goal.com/id/berita/1");
 
